@@ -1,0 +1,32 @@
+## spacy version 3.3.0
+
+ENT = [] ## Array of Entities i.e Text example -> "Artizence"
+LABEL = [] ## Array of Label i.e Label example -> "ORG"
+
+def matcher_annotater(nlp,doc,ENT,LABEL):
+    matcher = Matcher(nlp.vocab)
+    pattern = { 'company':[],'date_time':[],'univ':[],'role':[],'edu_deg':[]}
+    
+    max_range = len(ENT)
+    ## we will nedd fifrent pattern
+    
+    for i in range(0,max_range-1):
+        if LABEL[i] =='company':
+            pattern[LABEL[i]].append({"TEXT":ENT[i]})
+        elif LABEL[i] =='role':
+            pattern[LABEL[i]].append({"TEXT":ENT[i]})
+        elif LABEL[i] =='date_time':
+            pattern[LABEL[i]].append({"TEXT":ENT[i]})
+        elif LABEL[i] =='univ':
+            pattern[LABEL[i]].append({"TEXT":ENT[i]})
+        elif LABEL[i] =='edu_deg':
+            pattern[LABEL[i]].append({"TEXT":ENT[i]})
+        
+   
+    for LAB in LABEL:
+        try:
+            print(LAB)
+            matcher.add("{}".format(LAB), [pattern[LAB]],on_match=on_match) 
+        except:
+            pass
+    return matcher
