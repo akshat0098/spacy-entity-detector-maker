@@ -1,8 +1,9 @@
 ## spacy version 3.3.0
+import spacy
+from spacy import displacy
 
 ENT = [] ## Array of Entities i.e Text example -> "Artizence"
 LABEL = [] ## Array of Label i.e Label example -> "ORG"
-
 
 
 def entity_detector_maker(ENT,LABEL):
@@ -20,6 +21,8 @@ def entity_detector_maker(ENT,LABEL):
 
     return entity_detector
 
+nlp = entity_detector(ENT,LABEL)
 
-
+doc = nlp(preprocess(resume))
+displacy.serve(doc, style="ent")
 
