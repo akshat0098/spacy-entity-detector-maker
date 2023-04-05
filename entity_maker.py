@@ -21,7 +21,7 @@ def entity_detector_maker(ENT,LABEL):
 
     return entity_detector
 
-nlp = entity_detector(ENT,LABEL)
+nlp = entity_detector_maker(ENT,LABEL)
 
 doc = nlp(preprocess(resume))
 displacy.serve(doc, style="ent")
